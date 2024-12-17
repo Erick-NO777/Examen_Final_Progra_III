@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ConstructoraUH.Models.Asignacion>
+
+@{
+    ViewBag.Title = "Lista de Asignaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Lista de Asignaciones</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva Asignación", "Create", null, new { @class = "btn btn-primary mb-3" })
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Empleado.NombreCompleto)</th>
+                <th>@Html.DisplayNameFor(model => model.Proyecto.Nombre)</th>
+                <th>@Html.DisplayNameFor(model => model.FechaAsignacion)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Empleado.NombreCompleto)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Proyecto.Nombre)</td>
+                    <td>@item.FechaAsignacion.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.IdAsignacion }, new { @class = "btn btn-warning btn-sm" })
+                        @Html.ActionLink("Detalles", "Details", new { id = item.IdAsignacion }, new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.IdAsignacion }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

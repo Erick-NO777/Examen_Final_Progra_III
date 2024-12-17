@@ -1,0 +1,85 @@
+﻿@model ConstructoraUH.Models.Empleado
+
+@{
+    ViewBag.Title = "Crear Empleado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Crear Nuevo Empleado</h2>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="card shadow p-4">
+                <h4 class="mb-4">Detalles del Empleado</h4>
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <!-- Nombre Completo -->
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.NombreCompleto, "Nombre Completo", new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.NombreCompleto, new { @class = "form-control", placeholder = "Ingrese el nombre completo" })
+                    @Html.ValidationMessageFor(model => model.NombreCompleto, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Fecha de Nacimiento -->
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.FechaNacimiento, "Fecha de Nacimiento", new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.FechaNacimiento, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Dirección -->
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.Direccion, "Dirección", new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control", placeholder = "Ingrese la dirección" })
+                    @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Teléfono -->
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.Telefono, "Teléfono", new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", placeholder = "Ingrese el teléfono" })
+                    @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Correo Electrónico -->
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.CorreoElectronico, "Correo Electrónico", new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.CorreoElectronico, new { @class = "form-control", placeholder = "Ingrese el correo electrónico" })
+                    @Html.ValidationMessageFor(model => model.CorreoElectronico, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Salario -->
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.Salario, "Salario", new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.Salario, new { @class = "form-control", placeholder = "Ingrese el salario" })
+                    @Html.ValidationMessageFor(model => model.Salario, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Categoría Laboral (DropDownList) -->
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.CategoriaLaboral, "Categoría Laboral", new { @class = "form-label" })
+                    @Html.DropDownListFor(model => model.CategoriaLaboral,
+                        new SelectList(new[] { "Administrador", "Operario", "Peón" }),
+                        "Seleccione una categoría",
+                        new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.CategoriaLaboral, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Botones -->
+                <div class="form-group mt-4 text-end">
+                    <button type="submit" class="btn btn-success me-2">Guardar</button>
+                    @Html.ActionLink("Volver a la Lista", "Index", null, new { @class = "btn btn-secondary" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

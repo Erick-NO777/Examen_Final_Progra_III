@@ -1,0 +1,54 @@
+﻿@model ConstructoraUH.Models.Asignacion
+
+@{
+    ViewBag.Title = "Crear Asignación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Crear Nueva Asignación</h2>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="card shadow p-4">
+                <h4 class="mb-4">Detalles de la Asignación</h4>
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <!-- Selección de Empleado -->
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.CarnetUnico, "Empleado", new { @class = "form-label" })
+                    @Html.DropDownList("CarnetUnico", null, "Seleccione un empleado", new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.CarnetUnico, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Selección de Proyecto -->
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.CodigoProyecto, "Proyecto", new { @class = "form-label" })
+                    @Html.DropDownList("CodigoProyecto", null, "Seleccione un proyecto", new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.CodigoProyecto, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Fecha de Asignación -->
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.FechaAsignacion, "Fecha de Asignación", new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.FechaAsignacion, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(model => model.FechaAsignacion, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Botones -->
+                <div class="form-group mt-4 text-end">
+                    <button type="submit" class="btn btn-success me-2">Guardar</button>
+                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

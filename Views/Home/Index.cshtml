@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<main>
+    <!-- Sección principal: Bienvenida -->
+    <section class="row" aria-labelledby="constructoraTitle">
+        <h1 id="constructoraTitle" class="display-4">Bienvenidos a Constructora UH</h1>
+        <p class="lead">
+            Somos una empresa líder en el sector de la construcción, comprometida con la creación de proyectos innovadores y de alta calidad que transforman vidas y ciudades.
+        </p>
+        <p>
+            <a href="@Url.Action("About", "Home")" class="btn btn-primary btn-md">Conoce más sobre nosotros &raquo;</a>
+        </p>
+    </section>
+
+    <!-- Sección destacada: Características -->
+    <div class="row mt-4">
+        <section class="col-md-4" aria-labelledby="calidadTitle">
+            <h2 id="calidadTitle">Calidad y Excelencia</h2>
+            <p>
+                En Constructora UH, garantizamos la máxima calidad en cada uno de nuestros proyectos. Contamos con materiales de primera y un equipo altamente capacitado.
+            </p>
+            <p>
+                <a class="btn btn-outline-dark" href="@Url.Action("About", "Home")">Ver más &raquo;</a>
+            </p>
+        </section>
+
+        <section class="col-md-4" aria-labelledby="innovacionTitle">
+            <h2 id="innovacionTitle">Innovación Constante</h2>
+            <p>
+                Implementamos soluciones tecnológicas avanzadas para optimizar tiempos y recursos, asegurando resultados impecables en cada obra.
+            </p>
+            <p>
+                <a class="btn btn-outline-dark" href="@Url.Action("About", "Home")">Ver más &raquo;</a>
+            </p>
+        </section>
+
+        <section class="col-md-4" aria-labelledby="proyectosTitle">
+            <h2 id="proyectosTitle">Proyectos Sostenibles</h2>
+            <p>
+                Nuestro compromiso con el medio ambiente nos impulsa a crear proyectos sustentables que respetan y cuidan nuestro planeta.
+            </p>
+            <p>
+                <a class="btn btn-outline-dark" href="@Url.Action("About", "Home")">Ver más &raquo;</a>
+            </p>
+        </section>
+    </div>
+</main>

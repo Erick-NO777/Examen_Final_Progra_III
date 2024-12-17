@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ConstructoraUH.Models.Proyecto>
+
+@{
+    ViewBag.Title = "Lista de Proyectos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Lista de Proyectos</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Proyecto", "Create", null, new { @class = "btn btn-primary mb-3" })
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <th>@Html.DisplayNameFor(model => model.FechaInicio)</th>
+                <th>@Html.DisplayNameFor(model => model.FechaFin)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>@item.FechaInicio.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        @if (item.FechaFin.HasValue)
+                        {
+                            @item.FechaFin.Value.ToString("dd/MM/yyyy")
+                        }
+                        else
+                        {
+                            <span class="text-muted">No definida</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.CodigoProyecto }, new { @class = "btn btn-warning btn-sm" })
+                        @Html.ActionLink("Detalles", "Details", new { id = item.CodigoProyecto }, new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.CodigoProyecto }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
